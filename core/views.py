@@ -1,4 +1,4 @@
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, CreateView, DeleteView
 
 from core.models import Customer, Project
 
@@ -23,6 +23,15 @@ class ProjectListView(ListView):
     model = Project
     template_name = 'project/list.html'
     context_object_name = 'projects'
+
+class ProjectCreateView(CreateView):
+    model = Project
+    template_name = 'project/create_update.html'
+    context_object_name = 'project'
+    fields = ['name', 'description', 'customer']
+
+class ProjectDeleteView(DeleteView):
+    model = Project
 
 
 class CustomerDashboardView(TemplateView):

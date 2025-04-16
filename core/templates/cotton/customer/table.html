@@ -1,0 +1,39 @@
+<c-base.table>
+    <c-slot name="head">
+        <c-base.th></c-base.th>
+        <c-base.th>Customer</c-base.th>
+        <c-base.th>E-mail</c-base.th>
+        <c-base.th>Signup Date</c-base.th>
+        <c-base.th>Projects</c-base.th>
+        <c-base.th>Actions</c-base.th>
+    </c-slot>
+    <c-slot name="body">
+        {% for customer in customers %}
+            <tr>
+                <c-base.td>
+                    <img class="rounded-xl" src="{{ customer.image.url }}" alt="{{ customer.name }}" width="50"
+                         height="50">
+                </c-base.td>
+                <c-base.td>
+                    {{ customer.name }}
+                </c-base.td>
+                <c-base.td>
+                    {{ customer.email }}
+                </c-base.td>
+                <c-base.td>
+                    {{ customer.signup_date|date }}
+                </c-base.td>
+                <c-base.td>
+                    <div class="flex gap-3 items-center">
+                        <a hx-get="">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                        <a hx-get="">
+                          <span class="material-symbols-outlined">delete</span>
+                        </a>
+                    </div>
+                </c-base.td>
+            </tr>
+        {% endfor %}
+    </c-slot>
+</c-base.table>

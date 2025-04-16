@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Project</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <!-- HTMX, Alpine -->
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!-- Extra styling -->
+    <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+<c-header/>
+<main class="container mx-auto px-2 py-5">
+    {% block content %}
+    {% endblock content %}
+</main>
+</body>
+</html>

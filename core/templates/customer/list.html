@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-md">All Customers</h1>
+    <hr class="bg-gray-300 px-2 my-3">
+    <c-customer.table :customers="customers"/>
+{% endblock content %}

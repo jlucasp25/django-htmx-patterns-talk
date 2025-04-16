@@ -1,0 +1,17 @@
+{
+  "name": "django-htmx-patterns-talk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./src/index.css -o ../static/index.css --watch"
+  },
+  "author": "",
+  "license": "None",
+  "description": "",
+  "dependencies": {
+    "@material-tailwind/html": "^2.3.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

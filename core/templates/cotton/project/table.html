@@ -1,0 +1,41 @@
+{% load static %}
+<c-base.table>
+    <c-slot name="head">
+        <c-base.th>Title</c-base.th>
+        <c-base.th>Customer</c-base.th>
+        <c-base.th>Created On</c-base.th>
+        <c-base.th># of Files</c-base.th>
+        <c-base.th width="50" end>Actions</c-base.th>
+    </c-slot>
+    <c-slot name="body">
+        {% for project in projects %}
+            <tr>
+                <c-base.td>
+                    {{ project.title }}
+                </c-base.td>
+                <c-base.td>
+                    {{ project.customer }}
+                </c-base.td>
+                <c-base.td>
+                    {{ project.created_on|date }}
+                </c-base.td>
+                <c-base.td>
+                    {{ project.files.all|length }} Files
+                </c-base.td>
+                <c-base.td>
+                    <div class="flex gap-3 justify-start items-center">
+                        <a hx-get="">
+                            <span class="mi material-symbols-outlined">view</span>
+                        </a>
+                        <a hx-get="">
+                            <span class="mi material-symbols-outlined">edit</span>
+                        </a>
+                        <a hx-get="">
+                            <span class="mi material-symbols-outlined">delete</span>
+                        </a>
+                    </div>
+                </c-base.td>
+            </tr>
+        {% endfor %}
+    </c-slot>
+</c-base.table>

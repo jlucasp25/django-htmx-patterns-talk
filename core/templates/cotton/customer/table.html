@@ -1,3 +1,4 @@
+{% load static %}
 <c-base.table>
     <c-slot name="head">
         <c-base.th></c-base.th>
@@ -5,14 +6,19 @@
         <c-base.th>E-mail</c-base.th>
         <c-base.th>Signup Date</c-base.th>
         <c-base.th>Projects</c-base.th>
-        <c-base.th>Actions</c-base.th>
+        <c-base.th width="50" end>Actions</c-base.th>
     </c-slot>
     <c-slot name="body">
         {% for customer in customers %}
             <tr>
                 <c-base.td>
-                    <img class="rounded-xl" src="{{ customer.image.url }}" alt="{{ customer.name }}" width="50"
-                         height="50">
+                    {% if customer.image %}
+                        <img class="border border-gray-500 rounded-xl" src="{{ customer.image.url }}" alt="{{ customer.name }}" width="30"
+                             height="30">
+                    {% else %}
+                        <img class="border border-gray-500 rounded-xl" src="{% static 'customer-placeholder.svg' %}" alt="No photo" width="30"
+                             height="30">
+                    {% endif %}
                 </c-base.td>
                 <c-base.td>
                     {{ customer.name }}
@@ -24,12 +30,15 @@
                     {{ customer.signup_date|date }}
                 </c-base.td>
                 <c-base.td>
+                    {{ custom.projects.all|length }} Projects
+                </c-base.td>
+                <c-base.td>
                     <div class="flex gap-3 items-center">
                         <a hx-get="">
-                            <span class="material-symbols-outlined">edit</span>
+                            <span class="mi material-symbols-outlined">edit</span>
                         </a>
                         <a hx-get="">
-                          <span class="material-symbols-outlined">delete</span>
+                            <span class="mi material-symbols-outlined">delete</span>
                         </a>
                     </div>
                 </c-base.td>

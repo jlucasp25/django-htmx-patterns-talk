@@ -4,17 +4,31 @@
     </p>
     <ul class="flex flex-wrap items-center gap-y-2 gap-x-8">
         <li>
-            <a href="#" class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
+            <a
+                    hx-get="{% url 'home' %}"
+                    hx-target="main"
+                    class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
+                Home
+            </a>
+        </li>
+        <li>
+            <a
+                    hx-get="{% url 'customer-list' %}"
+                    hx-target="main"
+                    class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
                 Customers
             </a>
         </li>
         <li>
-            <a href="#" class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
+            <a
+                    hx-get="{% url 'project-list' %}"
+                    hx-target="main"
+                    class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
                 Projects
             </a>
         </li>
         <li>
-            <a href="#" class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
+            <a onclick="alert('dummy page!')" class="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm">
                 Contact Us
             </a>
         </li>

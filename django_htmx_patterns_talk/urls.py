@@ -18,11 +18,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from core.views import CustomerListView, HomeDashboardView, ProjectListView
+from core.views import CustomerListView, HomeDashboardView, ProjectListView, ProjectCreateView, ProjectUpdateView, \
+    ProjectDetailView, CustomerDashboardView, CustomerStatsView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomeDashboardView.as_view(), name="home"),
     path("customers/", CustomerListView.as_view(), name="customer-list"),
+    path("customer/<int:pk>/", CustomerDashboardView.as_view(), name="customer-dashboard"),
+    path("customer/stats/<int:pk>/", CustomerStatsView.as_view(), name="customer-stats"),
+    path("project/", ProjectCreateView.as_view(), name="project-create"),
+    path("project/<int:pk>/", ProjectUpdateView.as_view(), name="project-update"),
+    path("project/detail/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
     path("projects/", ProjectListView.as_view(), name="project-list"),
 ]

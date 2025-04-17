@@ -27,10 +27,15 @@
                         <a hx-get="">
                             <span class="mi material-symbols-outlined">view</span>
                         </a>
-                        <a hx-get="">
+                        <a hx-get="{% url 'project-update' pk=project.pk %}"
+                           hx-target="main"
+                        >
                             <span class="mi material-symbols-outlined">edit</span>
                         </a>
-                        <a hx-get="">
+                        <a hx-delete="{% url 'project-update' pk=project.pk %}"
+                           hx-target="main"
+                           hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}"
+                           hx-confirm="Are you sure you want to delete this project?">
                             <span class="mi material-symbols-outlined">delete</span>
                         </a>
                     </div>

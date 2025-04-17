@@ -1,0 +1,21 @@
+<h1 class="text-md">Customer Overview</h1>
+<hr class="bg-gray-300 px-2 my-3">
+<div class="flex flex-row gap-2">
+    <div class="w-3/4">
+        <section
+                hx-get="{% url 'project-detail' pk=latest_project_pk %}"
+                hx-target="this"
+                hx-trigger="load"
+        >
+        </section>
+        <section
+                hx-get="{% url 'customer-stats' pk=view.kwargs.pk %}"
+                hx-target="this"
+                hx-trigger="load"
+        >
+        </section>
+    </div>
+    <div class="w-1/4">
+        INSERT LIST OF PROJECTS HERE
+    </div>
+</div>

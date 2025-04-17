@@ -1,0 +1,20 @@
+<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg">
+    <div class="p-4">
+        <h5 class="mb-2 text-slate-800 text-xl font-semibold">
+            {{ project|yesno:"Edit Project,Create Project" }}
+        </h5>
+        <p class="text-slate-600 leading-normal font-light">
+        <form hx-post="{{ request.path }}"
+              hx-target="main"
+        >
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit"
+                    class="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
+                    >
+                Submit
+            </button>
+        </form>
+        </p>
+    </div>
+</div>

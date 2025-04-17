@@ -13,10 +13,12 @@
             <tr>
                 <c-base.td>
                     {% if customer.image %}
-                        <img class="border border-gray-500 rounded-xl" src="{{ customer.image.url }}" alt="{{ customer.name }}" width="30"
+                        <img class="border border-gray-500 rounded-xl" src="{{ customer.image.url }}"
+                             alt="{{ customer.name }}" width="30"
                              height="30">
                     {% else %}
-                        <img class="border border-gray-500 rounded-xl" src="{% static 'customer-placeholder.svg' %}" alt="No photo" width="30"
+                        <img class="border border-gray-500 rounded-xl" src="{% static 'customer-placeholder.svg' %}"
+                             alt="No photo" width="30"
                              height="30">
                     {% endif %}
                 </c-base.td>
@@ -30,10 +32,39 @@
                     {{ customer.signup_date|date }}
                 </c-base.td>
                 <c-base.td>
-                    {{ custom.projects.all|length }} Projects
+                    <div class="flex items-center gap-3">
+                        {% with customer.projects.count as count %}
+                            {% if count %}
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{ customer.projects.count }}
+                                    Projects</p>
+                                <a
+                                        class="flex"
+                                        hx-get="{% url 'project-list' %}"
+                                        hx-target="main"
+                                        hx-vals='{"customer": "{{ customer.pk }}"}'
+                                >
+                                    <span class="mi material-symbols-outlined">visibility</span>
+                                </a>
+                            {% else %}
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    0 Projects</p>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                 </c-base.td>
                 <c-base.td>
                     <div class="flex gap-3 items-center">
+                        <a hx-get="{% url 'customer-dashboard' pk=customer.pk %}"
+                           hx-target="main"
+                        >
+                            <span class="mi material-symbols-outlined">visibility</span>
+                        </a>
+                        <a hx-get="{% url 'customer-stats' pk=customer.pk %}"
+                           hx-target="main">
+                            <span class="mi material-symbols-outlined">
+bar_chart
+</span>
+                        </a>
                         <a hx-get="">
                             <span class="mi material-symbols-outlined">edit</span>
                         </a>

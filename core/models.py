@@ -27,7 +27,7 @@ class Project(models.Model):
 class ProjectFile(models.Model):
     name = models.CharField(max_length=255)
     file = models.FileField(upload_to='files/')
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,related_name='files', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

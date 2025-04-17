@@ -1,9 +1,11 @@
-{% if customer %}
-    <h1 class="text-md">{{ customer }}'s Projects</h1>
+{% if 'list' in request.GET %}
+    <c-project.list :projects="projects"/>
 {% else %}
-    <h1 class="text-md">All Projects</h1>
+    {% if customer %}
+        <h1 class="text-md">{{ customer }}'s Projects</h1>
+    {% else %}
+        <h1 class="text-md">All Projects</h1>
+    {% endif %}
+    <hr class="bg-gray-300 px-2 my-3">
+    <c-project.table :projects="projects"/>
 {% endif %}
-
-<hr class="bg-gray-300 px-2 my-3">
-<c-project.table :projects="projects"/>
-

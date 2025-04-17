@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "npx tailwindcss -i ./src/index.css -o ../static/index.css --watch"
+    "watch:css": "npx tailwindcss -i ./index.css -o ../static/index.css --watch",
+    "build:js": "parcel build --dist-dir ../static --no-source-maps --no-cache"
   },
-  "author": "",
+  "author": "João Lucas Pires",
   "license": "None",
   "description": "",
   "dependencies": {
-    "@material-tailwind/html": "^2.3.2"
+    "@material-tailwind/html": "^2.3.2",
+    "alpinejs": "^3.14.9",
+    "chart.js": "^4.4.9"
   },
   "devDependencies": {
+    "parcel": "^2.14.4",
     "tailwindcss": "^3.4.17"
   }
 }

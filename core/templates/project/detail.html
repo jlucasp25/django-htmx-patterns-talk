@@ -1,19 +1,19 @@
-<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg">
+<div class="relative flex flex-col justify-start mb-6 bg-white shadow-sm border border-slate-200 rounded-lg">
     <div class="p-4">
         <h5 class="mb-2 text-slate-800 text-xl font-semibold">
             {{ project }}
         </h5>
         <p class="text-slate-600 leading-normal font-light">
-            Customer: {{ project.customer }}
+            <strong>Customer:</strong> {{ project.customer }}
         </p>
         <p class="text-slate-600 leading-normal font-light">
-           Description {{ project.description }}
+           <strong>Description:</strong> {{ project.description }}
         </p>
         <p class="text-slate-600 leading-normal font-light">
-            Created on: {{ project.created_on|date }}
+            <strong>Created on:</strong> {{ project.created_on|date }}
         </p>
         <p class="text-slate-600 leading-normal font-light">
-            {{ project.files.count }} files
+            {{ project.files.count }} Files
         </p>
     </div>
 </div>

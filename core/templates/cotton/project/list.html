@@ -1,0 +1,17 @@
+{% load static %}
+<div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200">
+    <nav class="flex min-w-[240px] flex-col gap-1 p-1.5">
+        {% for project in projects %}
+            <div
+                    role="button"
+                    class="text-slate-800 flex flex-col w-full gap-2 rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+                    hx-get="{% url 'project-update' pk=project.pk %}"
+                    hx-target="main"
+            >
+                <p class="text-md">{{ project.title }}</p>
+                <p class="text-xs">{{ project.created_on|date }}</p>
+                Inbox
+            </div>
+        {% endfor %}
+    </nav>
+</div>

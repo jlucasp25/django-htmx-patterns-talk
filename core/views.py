@@ -1,4 +1,6 @@
-from django.db.models import Count
+import json
+
+from django.db.models import Count, F
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, DetailView, CreateView, DeleteView, UpdateView
@@ -73,6 +75,7 @@ class ProjectUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('project-list', kwargs={'customer': self.object.customer.pk})
 
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = 'project/detail.html'
@@ -95,6 +98,7 @@ class CustomerDashboardView(TemplateView):
         context['latest_project_pk'] = Project.objects.filter(customer__pk=customer_id).latest().pk
         return context
 
+
 class CustomerStatsView(DetailView):
     model = Customer
     template_name = 'customer/stats.html'
@@ -102,7 +106,14 @@ class CustomerStatsView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["projects_created_by_month"] = self.object.projects.values('created_on__month').annotate(
-            count=Count('id')
-        ).order_by('created_on__month')
+        projects_created_by_month = list(self.object.projects.values('created_on__month').annotate(
+            count=Count('id'), month=F('created_on__month')
+        ).order_by('month'))
+        labels = [pm['month'] for pm in projects_created_by_month]
+        data = [pm['count'] for pm in projects_created_by_month]
+        projects_created_by_month_chart_data = {
+            "labels": labels,
+            "datasets": [{"label": "Projects by Month", "data": data}],
+        }
+        context['projects_created_by_month_chart_data'] = json.dumps(projects_created_by_month_chart_data)
         return context
